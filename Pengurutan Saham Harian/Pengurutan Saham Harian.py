@@ -1,4 +1,8 @@
 # Fungsi Merge Sort (Rekursif)
+import time
+import random
+
+# Fungsi Merge Sort (Rekursif)
 def merge_sort(data):
     if len(data) > 1:
         mid = len(data) // 2
@@ -37,32 +41,36 @@ def selection_sort(data):
                 min_index = j
         data[i], data[min_index] = data[min_index], data[i]
         
-        # Input manual harga saham
-print("Masukkan daftar harga saham (pisahkan dengan spasi):")
-input_data = input()  # Misal: "15000 12000 18000 10000 20000 17000"
-harga_saham = list(map(int, input_data.split()))  # Mengubah input menjadi list angka
+        
+# input data harga saham
+# harga_saham = [15000, 12000, 18000, 10000, 20000, 17000]
+# Membuat dataset besar (10.000 elemen)
+harga_saham = random.sample(range(1000, 100000), 10000)  # 10.000 elemen acak
+
 
 # Mengurutkan menggunakan Merge Sort
-print("\nPengurutan Harga Saham dengan Merge Sort:")
+print("Pengurutan Harga Saham dengan Merge Sort:")
 merge_sort(harga_saham)
 print("Hasil:", harga_saham)
 
-# Reset data dan Mengurutkan menggunakan Selection Sort
-harga_saham = list(map(int, input_data.split()))  # Reset data
+# Mengurutkan menggunakan Selection Sort
+# harga_saham = [15000, 12000, 18000, 10000, 20000, 17000]  # Reset data
 print("\nPengurutan Harga Saham dengan Selection Sort:")
 selection_sort(harga_saham)
 print("Hasil:", harga_saham)
 
-# Input data harga saham
-# harga_saham = [15000, 12000, 18000, 10000, 20000, 17000]
+print()
 
-# Mengurutkan menggunakan Merge Sort
-# print("Pengurutan Harga Saham dengan Merge Sort:")
-# merge_sort(harga_saham)
-# print("Hasil:", harga_saham)
+# Mengukur waktu eksekusi Merge Sort
+merge_sort_data = harga_saham.copy()
+start_time = time.perf_counter()
+merge_sort(merge_sort_data)
+merge_sort_time = time.perf_counter() - start_time
+print("Waktu eksekusi Merge Sort:", merge_sort_time, "detik")
 
-# # Mengurutkan menggunakan Selection Sort
-# # harga_saham = [15000, 12000, 18000, 10000, 20000, 17000]  # Reset data
-# print("\nPengurutan Harga Saham dengan Selection Sort:")
-# selection_sort(harga_saham)
-# print("Hasil:", harga_saham)
+# Mengukur waktu eksekusi Selection Sort
+selection_sort_data = harga_saham.copy()
+start_time = time.perf_counter()
+selection_sort(selection_sort_data)
+selection_sort_time = time.perf_counter() - start_time
+print("Waktu eksekusi Selection Sort:", selection_sort_time, "detik")
